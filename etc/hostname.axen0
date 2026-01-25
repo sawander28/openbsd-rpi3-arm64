@@ -1,0 +1,9 @@
+# /etc/hostname.axen0
+#
+# LAN subnet
+#
+inet 10.0.0.1 255.255.255.0 10.0.0.255
+
+
+# Apply interface configuration with netstart(8):
+# sh /etc/netstart
