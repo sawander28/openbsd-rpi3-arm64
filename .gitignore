@@ -3,3 +3,4 @@ miniroot78.img
 SHA256*
 openbsd-78-base.pub
 openbsd78-qemu-arm64.img
+/etc/dhcpd6.conf
