@@ -1,0 +1,19 @@
+#!/bin/sh -e
+
+rm -f SHA256.sig miniroot78.img openbsd-78-base.pub RPi3_UEFI_Firmware_v1.50.zip
+
+for file in SHA256.sig miniroot78.img; do
+    curl -LO https://cdn.openbsd.org/pub/OpenBSD/snapshots/arm64/$file
+done
+curl -LO https://cdn.openbsd.org/pub/OpenBSD/signify/openbsd-78-base.pub
+curl -LO https://github.com/pftf/RPi3/releases/download/v1.50/RPi3_UEFI_Firmware_v1.50.zip
+
+# Get uefi firmware
+
+# Verify
+test "$(sha256 RPi3_UEFI_Firmware_v1.50.zip)" = "sha256:75c0f2d9cc10e97f470b3d4e2639c0b5ebb84959c562dc8956c3616e08cf165a"
+sha256sum miniroot78.img
+signify -C -p openbsd-78-base.pub -x SHA256.sig miniroot78.img
+
+
+
