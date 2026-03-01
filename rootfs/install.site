@@ -1,0 +1,31 @@
+#!/bin/sh
+echo "Provisioning $(hostname)" >> /var/log/install.log
+
+syspatch
+pkg_add -Uu
+echo "https://cdn.openbsd.org/pub/OpenBSD" > /etc/installurl
+sysmerge
+tzsetup
+
+rcctl enable sshd
+rcctl start sshd
+rcctl disable smtpd
+rcctl stop smtpd
+rcctl enable ntpd
+rcctl start ntpd
+rcctl ls on
+
+echo "permit nopass keepenv :wheel" > /etc/doas.conf
+chmod 600 /etc/doas.conf
+
+pkg_add curl htop rsync tor vim
+
+sysctl hw.sensors
+ifconfig -A
+
+mkdir -m 700 ~/.ssh
+touch ~/.ssh/authorized_keys
+echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEi9GdfoM0lXiIBRBkfkvs6Q+3iEdoIY9RmhffBJv4yu anon@z620" > ~/.ssh/authorized_keys
+chmod 600 ~/.ssh/authorized_keys
+
+
