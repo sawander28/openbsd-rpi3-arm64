@@ -1,0 +1,23 @@
+#!/bin/sh
+
+#
+# Deploy files to miniroot78.img
+#
+
+# Mount raw image
+mdconfig -t vnode -f miniroot78.img -u 0
+
+# ufs rootfs partition
+mount /dev/md0s4 /mnt
+mkdir -p /mnt/etc
+echo "set tty fb0" > /mnt/etc/boot.conf
+umount /mnt
+
+# UEFI Boot partition
+# Backup efistub, remove bootloader, install rpi3 UEFI firmware and restore efistub.
+mount -t msdos /dev/md0s1 /mnt
+mv /mnt/efi /tmp
+rm -rf /mnt/*
+bsdunzip RPi3_UEFI_Firmware_v1.50.zip -d /mnt
+mv /tmp/efi /mnt
+umount /mnt
