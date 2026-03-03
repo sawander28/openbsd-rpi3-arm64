@@ -1,0 +1,8 @@
+dhcpd_flags=
+mrouted_flags=
+pkg_scripts=tor tinyproxy
+portmap_flags=
+resolvd_flags=NO
+route_default="192.168.1.1"
+unbound_flags=
+vmd_flags=

@@ -1,0 +1,3 @@
+#!/bin/sh
+curl -s ipconfig.io -4
+curl -s ipconfig.io -6
