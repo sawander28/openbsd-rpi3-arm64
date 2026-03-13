@@ -4,6 +4,11 @@
 # Deploy files to miniroot78.img
 #
 
+if [ "$(id -u)" -ne 0 ]; then
+    printf "This script must be run as root."
+    exit 1
+fi
+
 # Mount raw image
 mdconfig -t vnode -f miniroot78.img -u 0
 
@@ -14,7 +19,7 @@ echo "set tty fb0" > /mnt/etc/boot.conf
 umount /mnt
 
 # UEFI Boot partition
-# Backup efistub, remove bootloader, install rpi3 UEFI firmware and restore efistub.
+# Backup efistub, remove bootloader, install rpi3 UEFI firmware & restore efistub.
 mount -t msdos /dev/md0s1 /mnt
 mv /mnt/efi /tmp
 rm -rf /mnt/*
