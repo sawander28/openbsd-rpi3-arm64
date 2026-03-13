@@ -13,6 +13,9 @@ fi
 mdconfig -t vnode -f miniroot78.img -u 0
 
 # ufs rootfs partition
+# Set framebuffer device or serial console
+# stty 115200
+# set tty com0
 mount /dev/md0s4 /mnt
 mkdir -p /mnt/etc
 echo "set tty fb0" > /mnt/etc/boot.conf
