@@ -1,6 +1,6 @@
 #!/usr/bin/env make
 
-miniroot:
+install:
 	curl -LO https://cdn.openbsd.org/pub/OpenBSD/signify/openbsd-78-base.pub
 	curl -LO https://cdn.openbsd.org/pub/OpenBSD/7.8/arm64/SHA256.sig
 	curl -LO https://cdn.openbsd.org/pub/OpenBSD/7.8/arm64/miniroot78.img

@@ -20,6 +20,6 @@ qemu-system-aarch64 \
     -drive if=none,id=stick,format=raw,file=miniroot78.img \
     -device qemu-xhci,id=xhci \
     -device usb-storage,bus=xhci.0,drive=stick,removable=on \
-    -drive file=obsd78-qemu-arm64.img,format=raw,if=virtio \
+    -drive file=openbsd78-qemu-arm64.img,format=raw,if=virtio \
     -netdev user,id=mynet0,hostfwd=tcp:127.0.0.1:7922-:22 \
     -device virtio-net,netdev=mynet0 
