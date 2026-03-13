@@ -4,21 +4,14 @@
 # OpenBSD 7.8 (arm64) on Qemu/KVM.
 #
 
-# Create rootfs disk
-qemu-img create -f raw openbsd78-qemu-arm64.img 4G
+# Install disk
+test openbsd78-qemu-arm64.img || \
+    qemu-img create -f raw openbsd78-qemu-arm64.img 4G
 
-curl -LO https://cdn.openbsd.org/pub/OpenBSD/7.8/arm64/minirootfs78.img
+curl -LO https://cdn.openbsd.org/pub/OpenBSD/7.8/arm64/miniroot78.img
 curl -LO https://cdn.openbsd.org/pub/OpenBSD/signify/openbsd-78-base.pub
 
-# Boot installed system from qcow2-image.
-#    qemu-system-aarch64 -M virt -m 2048 -cpu cortex-a57 -smp 4 \
-#        -bios edk2-aarch64-code.fd -nographic -serial mon:stdio \
-#        -drive file=openbsd78-qemu-arm64.img,format=raw,if=virtio \
-#        -netdev user,id=mynet0,hostfwd=tcp:127.0.0.1:7922-:22 \
-#        -device virtio-net,netdev=mynet0 
-
-
-# Boot UEFI-Firmware from micro-sd.
+# Boot miniroot78.img & install OpenBSD on raw disk.
 qemu-system-aarch64 \
     -M virt -m 4096 \
     -cpu cortex-a57 -smp 4 \
