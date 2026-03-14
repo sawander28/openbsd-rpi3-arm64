@@ -20,26 +20,7 @@ mount /dev/md0s4 /mnt
 mkdir -p /mnt/etc
 echo "set tty fb0" > /mnt/etc/boot.conf
 
-
-
-# Deploy install.site
-#cat << EOF >> install.site
-#echo "Provisioning $(hostname)" >> /var/log/install.log
-
-#pkg_add rsync htop vim unbound
-
-#rcctl enable sshd
-#rcctl enable ntpd
-#rcctl enable dhcpd
-#rcctl enable unbound
-#EOF
-
-# Tar rootfs
-#tar -C rootfs -czphf site78.tgz .
-
-mv site78.tgz /mnt
 umount /mnt
-
 
 
 # UEFI Boot partition
@@ -51,3 +32,5 @@ bsdunzip RPi3_UEFI_Firmware_v1.50.zip -d /mnt
 mv /tmp/efi /mnt
 
 umount /mnt
+
+mdconfig -d -u0
