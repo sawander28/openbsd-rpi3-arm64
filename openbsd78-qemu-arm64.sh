@@ -4,7 +4,7 @@
 #
 
 # Install disk
-test openbsd78-qemu-arm64.img || \
+test -f openbsd78-qemu-arm64.img || \
     qemu-img create -f raw openbsd78-qemu-arm64.img 4G
 
 curl -LO https://cdn.openbsd.org/pub/OpenBSD/signify/openbsd-78-base.pub
