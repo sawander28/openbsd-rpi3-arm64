@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #
-# Deploy files to miniroot78.img
+# Deploy config files to miniroot78.img raw image.
 #
 
 if [ "$(id -u)" -ne 0 ]; then
@@ -9,12 +9,11 @@ if [ "$(id -u)" -ne 0 ]; then
     exit 1
 fi
 
-
 curl -LO https://cdn.openbsd.org/pub/OpenBSD/signify/openbsd-78-base.pub
 curl -LO https://cdn.openbsd.org/pub/OpenBSD/7.8/arm64/SHA256.sig
 curl -LO https://cdn.openbsd.org/pub/OpenBSD/7.8/arm64/miniroot78.img
+curl -LO https://github.com/pftf/RPi3/releases/download/v1.50/RPi3_UEFI_Firmware_v1.50.zip
 signify -C -p openbsd-78-base.pub -x SHA256.sig miniroot78.img
-
 
 # Mount raw image
 mdconfig -t vnode -f miniroot78.img -u 0
@@ -23,7 +22,7 @@ mdconfig -t vnode -f miniroot78.img -u 0
 mount /dev/md0s4 /mnt
 mkdir -p /mnt/etc
 echo "set tty fb0" > /mnt/etc/boot.conf
-
+rsync -avz rootfs/ /
 umount /mnt
 
 
@@ -36,5 +35,5 @@ bsdunzip RPi3_UEFI_Firmware_v1.50.zip -d /mnt
 mv /tmp/efi /mnt
 
 umount /mnt
-
+# Clear references
 mdconfig -d -u0
