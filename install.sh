@@ -19,7 +19,28 @@ mdconfig -t vnode -f miniroot78.img -u 0
 mount /dev/md0s4 /mnt
 mkdir -p /mnt/etc
 echo "set tty fb0" > /mnt/etc/boot.conf
+
+
+
+# Deploy install.site
+cat << EOF >> install.site
+echo "Provisioning $(hostname)" >> /var/log/install.log
+
+pkg_add rsync htop vim unbound
+
+rcctl enable sshd
+rcctl enable ntpd
+rcctl enable dhcpd
+rcctl enable unbound
+EOF
+
+# Tar rootfs
+tar -C rootfs -czphf site78.tgz .
+
+mv site78.tgz /mnt
 umount /mnt
+
+
 
 # UEFI Boot partition
 # Backup efistub, remove bootloader, install rpi3 UEFI firmware & restore efistub.
@@ -28,4 +49,5 @@ mv /mnt/efi /tmp
 rm -rf /mnt/*
 bsdunzip RPi3_UEFI_Firmware_v1.50.zip -d /mnt
 mv /tmp/efi /mnt
+
 umount /mnt
