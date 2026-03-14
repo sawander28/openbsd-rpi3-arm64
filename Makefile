@@ -8,7 +8,7 @@ install:
 	signify -C -p openbsd-78-base.pub -x SHA256.sig miniroot78.img
 
 clean:
-	rm SHA256.sig
-	rm openbsd-78-base.pub
-	rm miniroot78.img
-	rm RPi3_UEFI_Firmware_v1.50.zip
+	sudo rm SHA256.sig
+	sudo rm openbsd-78-base.pub
+	sudo rm miniroot78.img
+	sudo rm RPi3_UEFI_Firmware_v1.50.zip
