@@ -12,7 +12,7 @@ fi
 
 curl -LO https://cdn.openbsd.org/pub/OpenBSD/signify/openbsd-78-base.pub
 curl -LO https://cdn.openbsd.org/pub/OpenBSD/7.8/arm64/SHA256.sig
-	curl -LO https://cdn.openbsd.org/pub/OpenBSD/7.8/arm64/miniroot78.img
+curl -LO https://cdn.openbsd.org/pub/OpenBSD/7.8/arm64/miniroot78.img
 signify -C -p openbsd-78-base.pub -x SHA256.sig miniroot78.img
 
 
