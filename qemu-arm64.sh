@@ -1,6 +1,6 @@
 #!/bin/sh -e
 #
-# Boot installed OpenBSD 7.8 (arm64) installed on raw disk on Qemu/KVM.
+# Boot OpenBSD 7.8 (arm64) disk install on Qemu/KVM.
 #
 
 qemu-system-aarch64 \

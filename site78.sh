@@ -13,4 +13,4 @@ rcctl enable unbound
 EOF
 
 # Tar rootfs
-tar -C rootfs install.site -czphf site78.tgz .
+tar -czphf site78.tgz rootfs install.site
