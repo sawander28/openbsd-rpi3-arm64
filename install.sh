@@ -22,7 +22,9 @@ mdconfig -t vnode -f miniroot78.img -u 0
 mount /dev/md0s4 /mnt
 mkdir -p /mnt/etc
 echo "set tty fb0" > /mnt/etc/boot.conf
-cp site78.tgz /mnt
+tar -czphf site78.tgz rootfs install.site install.conf
+cp site78.tgz /mnt/site78.tgz
+cp install.conf /mnt/install.conf
 umount /mnt
 
 
