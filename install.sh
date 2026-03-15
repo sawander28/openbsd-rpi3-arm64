@@ -22,7 +22,7 @@ mdconfig -t vnode -f miniroot78.img -u 0
 mount /dev/md0s4 /mnt
 mkdir -p /mnt/etc
 echo "set tty fb0" > /mnt/etc/boot.conf
-rsync -avz rootfs/ /
+cp site78.tgz /mnt
 umount /mnt
 
 
