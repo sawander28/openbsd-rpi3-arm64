@@ -35,7 +35,7 @@ mv /mnt/efi /tmp
 rm -rf /mnt/*
 bsdunzip RPi3_UEFI_Firmware_v1.50.zip -d /mnt
 mv /tmp/efi /mnt
-
 umount /mnt
+
 # Clear references
 mdconfig -d -u0
