@@ -8,3 +8,5 @@ device_tree_address=0x1f0000
 device_tree_end=0x200000
 # Uncomment if you have trouble with the UART console during boot
 #core_freq=250
+# Disable bluetooth
+dtoverlay=disable-bt
