@@ -6,6 +6,7 @@ install:
 	curl -LO https://cdn.openbsd.org/pub/OpenBSD/7.8/arm64/miniroot78.img
 	curl -LO https://cdn.openbsd.org/pub/OpenBSD/snapshots/arm64/miniroot79.img
 	signify -C -p openbsd-78-base.pub -x SHA256.sig miniroot78.img
+	curl -LO https://cdn.openbsd.org/pub/OpenBSD/7.8/arm64/install78.iso
 	# UEFI firmware
 	curl -LO https://github.com/pftf/RPi3/releases/download/v1.50/RPi3_UEFI_Firmware_v1.50.zip
 	curl -LO https://github.com/pftf/RPi4/releases/download/v1.50/RPi4_UEFI_Firmware_v1.50.zip
