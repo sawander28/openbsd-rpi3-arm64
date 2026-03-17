@@ -1,8 +1,7 @@
 openbsd-78-base.pub
 SHA256.sig
-
-RPi3_UEFI_Firmware_v1.50.zip
-miniroot78.img
 openbsd78-qemu-arm64.img
-
 site78.tgz
+RPI*
+RPi*
+miniroot*
